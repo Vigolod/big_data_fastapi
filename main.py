@@ -6,12 +6,15 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from urllib.parse import unquote
 
+from starlette.staticfiles import StaticFiles
+
 from app.app import create_app
 from app.utils import get_kds
 
 
 app, db_callback = create_app()
 templates = Jinja2Templates(directory="app/templates")
+app.mount("/static", StaticFiles(directory="app/static"), name="stat")
 
 
 @app.get("/", response_class=HTMLResponse)

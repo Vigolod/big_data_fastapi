@@ -2,4 +2,4 @@
 *.pyc
 .idea/
 .python-version
-
+app/static/fonts/*
