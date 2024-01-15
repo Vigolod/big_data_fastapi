@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title> Vehicle selector</title>
+    </head>
+    <body>
+        {% for vehicle in vehicles %}
+            <li><a href="/{{vehicle}}/"> {{vehicle}} </a></li>
+        {% endfor %}
+    </body>
+</html>
