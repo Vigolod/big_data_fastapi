@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>K/D ratios for {{vehicle}}</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>KDL</th>
+                <th>KDH</th>
+                <th>KDE</th>
+                <th>KD</th>
+            </tr>
+            <tr>
+                {% for kd in kds %}
+                    <td>{{kd}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </body>
+</html>

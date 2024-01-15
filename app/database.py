@@ -40,6 +40,18 @@ class Database:
             result = cur.fetchall()
         self._vehicles = [v for (v,) in result]
 
+    def get_vehicle(self, vehicle):
+        query = SQL("select * from {table} where {column} = %s;").format(
+            column=Identifier(self.columns[0]),
+            table=Identifier(self.table_name)
+        )
+        with self.conn as conn:
+            cur = conn.cursor()
+            cur.execute(query, (vehicle,))
+            result = cur.fetchone()
+        return result
+
+
 
 def get_columns(table_name: str, conn: connection):
     query = "select column_name from information_schema.columns \
