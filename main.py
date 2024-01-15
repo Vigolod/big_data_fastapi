@@ -22,7 +22,7 @@ async def root(request: Request, db=Depends(db_callback)):
         {"request": request, "vehicles": zip(db.vehicles, vehicles_quoted)}
     )
 
-@app.get("/{vehicle}", response_class=HTMLResponse)
+@app.get("/vehicles/{vehicle}/", response_class=HTMLResponse)
 async def root(request: Request, vehicle: str, db=Depends(db_callback)):
     vehicle = unquote(vehicle)
     vehicle_stats = db.get_vehicle(vehicle)
