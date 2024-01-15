@@ -3,8 +3,8 @@
         <title> Vehicle selector</title>
     </head>
     <body>
-        {% for vehicle in vehicles %}
-            <li><a href="/{{vehicle}}/"> {{vehicle}} </a></li>
+        {% for vehicle, qouted_v in vehicles %}
+            <li><a href="/{{qouted_v}}/"> {{vehicle}} </a></li>
         {% endfor %}
     </body>
 </html>
