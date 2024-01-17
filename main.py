@@ -3,7 +3,7 @@ from urllib.parse import quote
 
 from fastapi import Request, Depends
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from urllib.parse import unquote
 
 from starlette.staticfiles import StaticFiles
@@ -33,3 +33,10 @@ async def root(request: Request, vehicle: str, db=Depends(db_callback)):
     return templates.TemplateResponse(
         'vehicle.html', {"request": request, "vehicle": vehicle, "kds": kds, "wr": wr}
     )
+
+@app.get("/extremums/", response_class=JSONResponse)
+async def root(request: Request, db=Depends(db_callback)):
+    result = db.get_extremum_vehicles()
+    return JSONResponse(content=result)
+    
+
