@@ -1,4 +1,4 @@
-def get_kds(columns, values):
+def get_kds_and_wr(columns, values):
     col_val_dict = dict(zip(columns, values))
     kd_dict = {}
     for k, v in col_val_dict.items():
@@ -13,5 +13,9 @@ def get_kds(columns, values):
             else:
                 kd_dict[k] = f"{v:.2f}"
     kds = [kd_dict[col] for col in ["KDL", "KDH", "KDE", "KD"]]
-    return kds
+    if col_val_dict["WINS"] == 0 and col_val_dict["LOSSES"] == 0:
+        wr = "UNK"
+    else:
+        wr = f"{col_val_dict['WIN_RATE']:.2f}"
+    return kds, wr
 

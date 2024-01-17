@@ -9,7 +9,7 @@ from urllib.parse import unquote
 from starlette.staticfiles import StaticFiles
 
 from app.app import create_app
-from app.utils import get_kds
+from app.utils import get_kds_and_wr
 
 
 app, db_callback = create_app()
@@ -29,7 +29,7 @@ async def root(request: Request, db=Depends(db_callback)):
 async def root(request: Request, vehicle: str, db=Depends(db_callback)):
     vehicle = unquote(vehicle)
     vehicle_stats = db.get_vehicle(vehicle)
-    kds = get_kds(db.columns, vehicle_stats)
+    kds, wr = get_kds_and_wr(db.columns, vehicle_stats)
     return templates.TemplateResponse(
-        'vehicle.html', {"request": request, "vehicle": vehicle, "kds": kds}
+        'vehicle.html', {"request": request, "vehicle": vehicle, "kds": kds, "wr": wr}
     )
